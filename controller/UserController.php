@@ -14,7 +14,7 @@ class UserController extends Controller{
 			}
 		}else
 		{
-			echo "Min 6 characteres password";
+			echo "Min 6 characters password";
 		}
 	}
 
