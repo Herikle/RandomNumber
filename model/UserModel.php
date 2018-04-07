@@ -9,7 +9,7 @@ class User extends Database
 	private $plan;
 	private $errors = array();
 
-	public function User($first_name, $last_name,$email,$password,$plan)
+	public function __construct($first_name, $last_name,$email,$password,$plan)
 	{
 		$this->first_name = $first_name;
 		$this->last_name = $last_name;
@@ -22,19 +22,10 @@ class User extends Database
 
 	private function valid()
 	{
-		$messages = array(
-			'first_name' => empty($this->first_name)? "First name can't be null" : 'valid'  ,
-			'last_name' => empty($this->last_name)? "Last name can't be null" : 'valid' ,
-			'email' => empty($this->email)? "Email can't be null" : 'valid',
-			'plan' => empty($this->plan)? "Plan can't be null" : 'valid',	
-		);
-		foreach($messages as $key => $value)
-		{
-			if($value != 'valid')
-			{
-				$this->errors[$key] = $value;
-			}
-		}
+		if(empty($this->first_name)) $this->errors['first_name'] = "First name can't be null";
+		if(empty($this->last_name)) $this->errors['last_name'] = "Last name can't be null";
+		if(empty($this->email)) $this->errors['email'] = "Email can't be null";
+		if(empty($this->plan)) $this->errors['plan'] = "Plan can't be null";
 	}
 
 	public function hasErrors()
