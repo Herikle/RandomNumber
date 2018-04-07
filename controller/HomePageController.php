@@ -1,12 +1,11 @@
 <?php
-	require_once 'controller/LoginPageController.php';
-	class HomePage{
 
-		public function index(){				
-			$this->redirect('/view/homepage.php');
-		}
+require_once 'controller/LoginPageController.php';
+require_once 'Controller.php';
 
-		private function redirect($location){
-			header('Location: '.$location);
-		}
+class HomePage extends Controller{
+
+	public function index(){				
+		$this->redirect('/view/homepage.php');
 	}
+}
