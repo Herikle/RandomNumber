@@ -12,6 +12,9 @@ class UserController extends Controller{
 			}else{
 				$user->save();
 			}
+		}else
+		{
+			echo "Min 6 characteres password";
 		}
 	}
 
@@ -19,7 +22,7 @@ class UserController extends Controller{
 	{	
 		$password = $_POST['password'];
 		$repeat_password = $_POST['repeat_password'];
-		if($password<6) return FALSE;
+		if(strlen($password)<6) return FALSE;
 		if($password==$repeat_password) return TRUE;
 	}
 
