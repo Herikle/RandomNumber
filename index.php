@@ -6,6 +6,7 @@
    require_once 'controller/UserController.php'; 
    require_once 'controller/AuthPagesController.php';
    require_once 'helpers/AuthHelper.php';
+   require_once 'helpers/SessionHelper.php';
 
    //--------------------inits-----------------------------------
    $path = $_SERVER['REQUEST_URI'];
@@ -13,7 +14,6 @@
    $login = new LoginPage();
    $user = new UserController();
    $auth = new AuthPages();
-
    //-------------------routes---------------------------------------
    if(Auth::hasAuth())
    {

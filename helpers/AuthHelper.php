@@ -17,10 +17,8 @@ class Auth
 		}
 		else
 		{
-			echo "ITS HERE<BR>";
 			if(isset($_COOKIE['user']))
 			{
-				echo "ITS HERE<BR>";
 				$user = new User();
 				$user->getUserBy('id',$_COOKIE['user']);
 				Session::setSession('user',$user->userToArray());

@@ -1,5 +1,5 @@
 <?php require_once '../helpers/SessionHelper.php'; ?>
-<?php $plan = Session::getSession('plan',TRUE);?>
+<?php $plan = Session::getSession('plan',FALSE);?>
 <html>
 <head>
 	<?php include 'layouts/header.php'; ?>
@@ -10,7 +10,7 @@
 		<h1 class="text-center">Oh, hi mark</h1>
 		<h2 class="text-center">You chose a <?php echo $plan; ?> plan</h2>
 	</div>
-	<div class="container">
+	<div class="container box-shadow">
 		<h2 class="text-center">Tell me who you are</h2>
 		<form method="POST" action="/signup">
 		  <div class="row">
