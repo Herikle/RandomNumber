@@ -10,7 +10,7 @@ class UserController extends Controller{
 			$user = new User();
 			$user->create($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['password'],$_POST['plan']);
 			if($user->hasErrors()){
-				echo var_dump($user->Errors());
+				echo var_dump($user->errors);
 			}else{
 				$user->save();
 			}

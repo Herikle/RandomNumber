@@ -34,11 +34,6 @@ class User extends Database
 		return !empty($this->errors);
 	}
 
-	public function Errors()
-	{
-		return $this->errors;
-	}
-
 	public function save()
 	{
 		$this->init();
