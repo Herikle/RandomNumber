@@ -15,11 +15,12 @@ class Database
 		{	
 		    $this->conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		    $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		    echo "Connected successfully<br>"; 
+		    return true; 
 	    }
 		catch(PDOException $e)
 	    {
-	    	echo "Connection failed: " . $e->getMessage() . "<br>";
+	    	//echo "Connection failed: " . $e->getMessage() . "<br>";
+	    	return false;
 	    }
 	}
 
@@ -28,17 +29,55 @@ class Database
 		try
 		{
 			$this->conn->exec($sql);
-	    	echo "New record created successfully<br>";
+	    	return true;
 	    }
 		catch(PDOException $e)
 	    {
-	    	echo $sql . "<br>" . $e->getMessage();
+	    	//echo $e->getMessage();
+	    	return false;
 	    }
+	}
+
+	protected function select($sql)
+	{
+		try
+		{
+			$result = $this->conn->query($sql);
+			$return = array();
+			if($result!=false)
+			{
+				foreach ($result as $row) 
+				{
+					for($i = 0;$i < $result->columnCount();$i++){
+						$col = $result->getColumnMeta($i);
+						$name = $col['name'];
+						$return[$name] = $row[$name];
+					}
+				}
+				return $return;
+			}
+			return false;
+		}	
+		catch(PDOException $e) 
+		{
+    		echo "Error: " . $e->getMessage();
+		}
 	}
 
 	protected function close()
 	{
 		$this->conn = null;
+	}
+
+	protected function exist($table)
+	{
+		try{
+			$this->conn->query("SELECT 1 FROM $table LIMIT 1");
+			return true;
+		}catch(PDOException $e)
+		{
+			return false;
+		}
 	}
 }
 ?>
