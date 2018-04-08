@@ -1,6 +1,7 @@
 <?php
 require_once 'Controller.php';
 require_once 'model/UserModel.php';
+require_once 'helpers/AuthHelper.php';
 class UserController extends Controller{
 
 	public function signup()
@@ -13,6 +14,8 @@ class UserController extends Controller{
 				echo var_dump($user->errors);
 			}else{
 				$user->save();
+				Auth::autenticate($user);
+				$this->redirect('/');
 			}
 		}else
 		{

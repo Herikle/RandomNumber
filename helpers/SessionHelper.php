@@ -12,8 +12,12 @@
 			session_start();
 			$value = isset($_SESSION[$key])? $_SESSION[$key]:FALSE;
 			if($destroy)
-				session_destroy();
+				unset($_SESSION[$key]);
 			return $value;
+		}
+
+		static function destroySession($key){
+			unset($_SESSION[$key]);
 		}
 
 	}

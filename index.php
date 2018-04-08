@@ -4,19 +4,27 @@
    require_once 'controller/HomePageController.php';
    require_once 'controller/LoginPageController.php';
    require_once 'controller/UserController.php'; 
+   require_once 'controller/AuthPagesController.php';
    require_once 'helpers/AuthHelper.php';
 
    //--------------------inits-----------------------------------
-
    $path = $_SERVER['REQUEST_URI'];
    $home = new HomePage();
    $login = new LoginPage();
    $user = new UserController();
+   $auth = new AuthPages();
 
    //-------------------routes---------------------------------------
    if(Auth::hasAuth())
    {
-      echo 'TA AUTENTICADO'; //corrigir sessões
+      switch($path){
+         case '/logout':
+            $auth->logout();
+         break;
+         default:
+            $auth->dashboard();
+         break;
+      }
    }
    else
    {

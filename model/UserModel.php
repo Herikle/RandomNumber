@@ -59,6 +59,18 @@ class User extends Database
 		}
 	}
 
+	public function userToArray()
+	{
+		$array = array(
+			'id' => $this->id,
+			'first_name' => $this->first_name,
+			'last_name' => $this->last_name,
+			'email' => $this->email,
+			'plan' => $this->plan,
+			);
+		return $array;
+	}
+
 	public function __get($name) 
 	{
     	return $this->$name;

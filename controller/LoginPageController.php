@@ -22,6 +22,7 @@ class LoginPage extends Controller
 		if($user->password==$_POST['password'])
 		{
 			Auth::autenticate($user);
+			$this->redirect('/');
 		}else
 		{
 			echo "incorreto";
