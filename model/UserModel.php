@@ -2,6 +2,7 @@
 require_once 'database.php';
 class User extends Database 
 {
+	private $id;
 	private $first_name;
 	private $last_name;
 	private $email;
@@ -9,7 +10,7 @@ class User extends Database
 	private $plan;
 	private $errors = array();
 
-	public function __construct($first_name, $last_name,$email,$password,$plan)
+	public function create($first_name, $last_name,$email,$password,$plan)
 	{
 		$this->first_name = $first_name;
 		$this->last_name = $last_name;
@@ -45,6 +46,28 @@ class User extends Database
 		$this->query($sql);
 		$this->close();
 	}
+
+	public function getUserBy($column,$email)
+	{
+		$this->init();
+		$sql = "SELECT * FROM user WHERE $column = '$email'";
+		$result = $this->select($sql);
+		$this->close();
+		if($result!=false)
+		{
+			$this->id = $result['id'];
+			$this->first_name = $result['first_name'];
+			$this->last_name = $result['last_name'];
+			$this->email = $result['email'];
+			$this->password = $result['password'];
+			$this->plan = $result['plan'];	
+		}
+	}
+
+	public function __get($name) 
+	{
+    	return $this->$name;
+  	}
 }
 
 ?>

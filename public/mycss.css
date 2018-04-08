@@ -1,0 +1,12 @@
+.login-page{
+	margin-top:10%;
+	height: 30%;
+}
+.test{
+	background-color: black;
+}
+.box-shadow{
+	box-shadow: 3px 4px 6px 2px rgba(0, 0, 0, 0.5);
+    padding: 2%;
+    background: white;
+}

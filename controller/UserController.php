@@ -5,8 +5,10 @@ class UserController extends Controller{
 
 	public function signup()
 	{
-		if($this->validPassword()){
-			$user = new User($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['password'],$_POST['plan']);
+		$test = $this->validPassword();
+		if($test===TRUE){
+			$user = new User();
+			$user->create($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['password'],$_POST['plan']);
 			if($user->hasErrors()){
 				echo var_dump($user->Errors());
 			}else{
@@ -14,7 +16,7 @@ class UserController extends Controller{
 			}
 		}else
 		{
-			echo "Min 6 characters password";
+			echo $test . "<br>";
 		}
 	}
 
@@ -22,8 +24,15 @@ class UserController extends Controller{
 	{	
 		$password = $_POST['password'];
 		$repeat_password = $_POST['repeat_password'];
-		if(strlen($password)<6) return FALSE;
-		if($password==$repeat_password) return TRUE;
+		if(strlen($password)<6) return "Min 6 chacacters password";
+		if($password==$repeat_password)
+		{
+			return TRUE;
+		}
+		else
+		{	
+			return "Passwords not match";
+		}
 	}
 
 }

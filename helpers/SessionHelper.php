@@ -10,7 +10,7 @@
 		static function getSession($key,$destroy)
 		{
 			session_start();
-			$value = isset($_SESSION[$key])? $_SESSION[$key]:'free';
+			$value = isset($_SESSION[$key])? $_SESSION[$key]:FALSE;
 			if($destroy)
 				session_destroy();
 			return $value;
