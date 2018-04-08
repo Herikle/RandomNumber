@@ -47,10 +47,10 @@ class User extends Database
 		$this->close();
 	}
 
-	public function getUserBy($column,$email)
+	public function getUserBy($column,$value)
 	{
 		$this->init();
-		$sql = "SELECT * FROM user WHERE $column = '$email'";
+		$sql = "SELECT * FROM user WHERE $column = '$value'";
 		$result = $this->select($sql);
 		$this->close();
 		if($result!=false)
