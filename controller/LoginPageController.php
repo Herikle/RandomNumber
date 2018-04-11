@@ -19,7 +19,7 @@ class LoginPage extends Controller
 		$email = isset($_POST['email'])? $_POST['email']:null;
 		if($email!=null)
 			$user->getUserBy('email',$email);
-		if($user->password==$_POST['password'])
+		if($user->password==md5($_POST['password']))
 		{
 			Auth::autenticate($user);
 			$this->redirect('/');

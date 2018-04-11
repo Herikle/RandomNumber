@@ -7,5 +7,7 @@
 	<?php include 'layouts/navbar.php'; ?>
 
 	<h1 class="text-center"><?php echo $user['first_name'];  ?>
+
+	<?php include 'layouts/scripts.php'; ?>		
 </body>
 </html>

@@ -33,7 +33,7 @@ class Database
 	    }
 		catch(PDOException $e)
 	    {
-	    	//echo $e->getMessage();
+	    	echo $e->getMessage();
 	    	return false;
 	    }
 	}
@@ -78,6 +78,21 @@ class Database
 		{
 			return false;
 		}
+	}
+
+	public function queryOnMigrate($sql){
+		$this->init();
+		try
+		{
+			$this->conn->exec($sql);
+	    	return true;
+	    }
+		catch(PDOException $e)
+	    {
+	    	echo $e->getMessage();
+	    	return false;
+	    }
+	    $this->close();
 	}
 }
 ?>

@@ -9,7 +9,21 @@ class UserController extends Controller{
 		$test = $this->validPassword();
 		if($test===TRUE){
 			$user = new User();
-			$user->create($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['password'],$_POST['plan']);
+			switch ($_POST['plan']) {
+				case 'free':
+					$idplan = 1;
+					break;
+				case 'vip':
+					$idplan = 2;
+					break;
+				case 'special':
+					$idplan = 3;
+					break;
+				default:
+					return false;
+					break;
+			}
+			$user->create($_POST['firstName'],$_POST['lastName'],$_POST['email'],$_POST['password'],$idplan);
 			if($user->hasErrors()){
 				echo var_dump($user->errors);
 			}else{
