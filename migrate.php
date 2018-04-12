@@ -22,6 +22,12 @@ require_once 'model/database.php';
 			descr varchar(32) NOT NULL,
 			PRIMARY KEY(id))";
 
+		private $stack = "CREATE TABLE stack(
+			number_value INT NOT NULL,
+			stack_pos INT NOT NULL,
+			user_id INT NOT NULL,
+			FOREIGN KEY(user_id) REFERENCES users(id))";
+
 	//---------------------------TABLE---------------------------------
 
 
@@ -41,13 +47,16 @@ $migrate = new Migrate();
 
 $migrate->createTable('plans');
 $migrate->createTable('users');
+$migrate->createTable('stack');
 
 //----------------------------------CREATES------------------------------------
 
-$plans = array("free","vip","special");
-foreach ($plans as $plan) {
-	$migrate->queryOnMigrate("INSERT INTO plans (descr) VALUES ('$plan') ");
-}
+// $plans = array("free","vip","special");
+// foreach ($plans as $plan) {
+// 	$migrate->queryOnMigrate("INSERT INTO plans (descr) VALUES ('$plan') ");
+// }
+
+
 
 
 ?>
